@@ -96,7 +96,7 @@ class ImageProcessing:
         flipped = cv.flip(self.image, -1)
         return flipped
 
-    def getCroppedImage(self, startX, startY,endX, endY):
+    def getCroppedImage(self, startX, startY, endX, endY):
         """
         :param startX:Start Pixel number in X direction
         :param startY: Start Pixel  number in Y direction
@@ -105,6 +105,7 @@ class ImageProcessing:
         :return: image matrix
         """
         return self.image[startX:endX, startY:endY]
+
     def testArithematic(self):
         """
 
@@ -115,4 +116,36 @@ class ImageProcessing:
         print("Min of 0: {}".format(cv.subtract(np.uint8([50]), np.uint8([100]))))
         print("Wrap around: {}".format(np.uint8([200]) + np.uint8([100])))
         print("Wrap around: {}".format(np.uint8([50]) - np.uint8([100])))
-        #Commenting here for commit
+
+        # Commenting here for commit
+
+    def PerformArithmetic(self, addition=None, subtraction=None, colorbit = 0):
+        """
+
+        :param self:
+        :param addition: True -> Adds the matrix with image
+        :param subtraction: True -> Subtracts color matrix from image
+        :return: modified image
+        """
+        self.SetArithematicParams(20)
+        if addition is None and subtraction is None:
+            return self.image
+
+        if addition is None:
+            # Perform subtraction
+            temp_matrix = np.ones(self.image.shape, dtype="uint8") * self.colorbit
+            modified_image = cv.subtract(self.image, temp_matrix)
+        if subtraction is None:
+            # Perform Addition
+            temp_matrix = np.ones(self.image.shape, dtype="uint8") * self.colorbit
+            modified_image = cv.add(self.image, temp_matrix)
+        return modified_image
+
+    def SetArithematicParams(self, colorbit=0):
+        """
+
+        :param self:
+        :param colorbit: Set the color bit from 0 ~ 255(Creates a matrix of 0 ~ 255
+        :return:
+        """
+        self.colorbit = colorbit
