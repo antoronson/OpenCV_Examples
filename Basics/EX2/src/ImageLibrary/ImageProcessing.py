@@ -4,11 +4,14 @@ import cv2 as cv
 
 class ImageProcessing:
     def __init__(self, image):
+        """
+
+        :param image: image matrix
+        """
         self.image = image
 
     def translate(self, x, y):
         """
-
         :param x:
         :param y:
         :return:
@@ -31,6 +34,11 @@ class ImageProcessing:
         return rotated
 
     def getCenterofImage(self, center):
+        """
+
+        :param center:
+        :return:
+        """
         (h, w, l) = self.image.shape  # ((Height, Width, Layer)
         if center is None:
             center = (w // 2, h // 2)
