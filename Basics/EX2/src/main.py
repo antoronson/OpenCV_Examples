@@ -19,6 +19,8 @@ cv.imshow ("Resized image", resized)
 
 #Crop image
 
-croppedImage = ip.getCroppedImage(150,200, 500, 500)
-cv.imshow("Cropped Image", croppedImage)
+#croppedImage = ip.getCroppedImage(150,200, 500, 500)
+#cv.imshow("Cropped Image", croppedImage)
+#cv.waitKey(0)
+ip.testArithematic()
 cv.waitKey(0)

@@ -105,3 +105,13 @@ class ImageProcessing:
         :return: image matrix
         """
         return self.image[startX:endX, startY:endY]
+    def testArithematic(self):
+        """
+
+        :return: Nil
+        """
+        cv.imshow("Original Image", self.image)
+        print("Max of 255: {}".format(cv.add(np.uint8([200]), np.uint8([100]))))
+        print("Min of 0: {}".format(cv.subtract(np.uint8([50]), np.uint8([100]))))
+        print("Wrap around: {}".format(np.uint8([200]) + np.uint8([100])))
+        print("Wrap around: {}".format(np.uint8([50]) - np.uint8([100])))
