@@ -7,11 +7,24 @@ class ImageProcessing:
         self.image = image
 
     def translate(self, x, y):
+        """
+
+        :param x:
+        :param y:
+        :return:
+        """
         M = np.float32([[1, 0, x], [0, 1, y]])
         shifted = cv.warpAffine(self.image, M, (self.image.shape[1], self.image.shape[0]))
         return shifted
 
     def rotate(self, rotationAngle, center=None, rescale=1.0):
+        """
+
+        :param rotationAngle: Angle in degree
+        :param center: (x,y) co ordinate around which to be rotated
+        :param rescale:
+        :return:
+        """
         (center, width, height) = self.getCenterofImage(self.image, center)
         M = cv.getRotationMatrix2D(center, rotationAngle, rescale)
         rotated = cv.warpAffine(self.image, M, (width, height))
@@ -56,8 +69,10 @@ class ImageProcessing:
 
     def flipImage(self, horizontal=None, vertical=None):
         """
-        Flip an image
 
+        :param horizontal: Set True if to be flipped horizontally
+        :param vertical: Set True if to be flipped vertically
+        :return: Image matrix
         """
         if horizontal is None and vertical is None:
             return self.image
@@ -72,5 +87,13 @@ class ImageProcessing:
 
         flipped = cv.flip(self.image, -1)
         return flipped
+
     def getCroppedImage(self, startX, startY,endX, endY):
+        """
+        :param startX:Start Pixel number in X direction
+        :param startY: Start Pixel  number in Y direction
+        :param endX: End Pixel number in X direction
+        :param endY: End Pixel number in Y direction
+        :return: image matrix
+        """
         return self.image[startX:endX, startY:endY]
