@@ -149,3 +149,14 @@ class ImageProcessing:
         :return:
         """
         self.colorbit = colorbit
+
+    def ImageMergeSplit(self):
+        (B, G, R) = cv.split(self.image)
+        cv.imshow("Red", R)
+        cv.imshow("Blue", B)
+        cv.imshow("Green", G)
+        cv.waitKey(0)
+
+        merged = cv.merge([B, G, R])
+        cv.imshow("Merged", merged)
+        cv.waitKey(0)

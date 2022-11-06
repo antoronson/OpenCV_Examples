@@ -13,6 +13,7 @@ cv.imshow("Original Image", image)
 
 
 ip = ImageProcessing(image)
+"""
 resized = ip.resize(width = 500, inter = cv.INTER_AREA)
 cv.imshow ("Resized image", resized)
 #cv.waitKey(0)
@@ -26,3 +27,5 @@ cv.imshow ("Resized image", resized)
 modifiedImage = ip.PerformArithmetic(addition = True, colorbit = 20)
 cv.imshow("Addition Image", modifiedImage)
 cv.waitKey(0)
+"""
+ip.ImageMergeSplit()
