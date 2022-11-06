@@ -18,4 +18,6 @@ cv.imshow("Blue", cv.merge([image, zeros, zeros]))
 
 merged = cv.merge([image, image, image])
 cv.imshow("Merged", merged)
+backToRgb = cv.cvtColor(image, cv.COLOR_GRAY2RGB)
+cv.imshow("Back to RGB ", backToRgb)
 cv.waitKey(0)

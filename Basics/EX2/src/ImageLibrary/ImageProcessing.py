@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import cv2 as cv
 
@@ -119,7 +120,7 @@ class ImageProcessing:
 
         # Commenting here for commit
 
-    def PerformArithmetic(self, addition=None, subtraction=None, colorbit = 0):
+    def PerformArithmetic(self, addition=None, subtraction=None, colorbit=0):
         """
 
         :param self:
@@ -160,3 +161,34 @@ class ImageProcessing:
         merged = cv.merge([B, G, R])
         cv.imshow("Merged", merged)
         cv.waitKey(0)
+
+    def CalcHistogram(self):
+        """
+
+        :return:
+        """
+        image2Bgr = cv.split(self.image)
+        cv.imshow("Original Image in BGR", self.image)
+
+        colors = ("b", "g", "r")
+        plt.figure()
+        plt.title("Grayscale histogram")
+        plt.xlabel("Bins")
+        plt.ylabel("# of Pixels")
+        """
+        for (pix, color) in zip(image2Bgr, colors):
+            hist = cv.calcHist([pix], [0], None, [256], [0, 256])
+            plt.plot(hist, color = color)
+            plt.xlim([0, 256])
+        """
+        hist = cv.calcHist([self.image], [0, 1, 2], None, [256, 256, 256], [0, 256, 0, 256, 0, 256])
+        plt.plot(hist)
+        print("3D Histogram shape: {}, with {} values".format(hist.shape, hist.flatten().shape[0]))
+        plt.show()
+        cv.waitKey(0)
+
+    def eqHist(self, modifiedimage):
+        #tempImage = cv.cvtColor(modifiedimage, cv.COLOR_BGR2GRAY)
+        eqImage = cv.equalizeHist(modifiedimage)
+        #back2Bgr = cv.cvtColor(eqImage, cv.COLOR_GRAY2BGR)
+        return (eqImage)

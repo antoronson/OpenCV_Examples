@@ -28,4 +28,6 @@ modifiedImage = ip.PerformArithmetic(addition = True, colorbit = 20)
 cv.imshow("Addition Image", modifiedImage)
 cv.waitKey(0)
 """
-ip.ImageMergeSplit()
+#ip.ImageMergeSplit()
+
+ip.CalcHistogram()
